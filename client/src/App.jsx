@@ -1,6 +1,5 @@
 
 function App() {
-
   return (
     <>
       <h1>Games Project</h1>
