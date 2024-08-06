@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getAllGames } from '../../api/games-api'
+import CatalogueGame from './catalogue-game/CatalogueGame'
 
 const CatalogueGames = () => {
     const [games, setGames] = useState([])
@@ -10,22 +11,15 @@ const CatalogueGames = () => {
     }, [])
 
     return (
-        // <!-- Catalogue -->
         <section id="catalog-page">
             <h1>All Games</h1>
 
             {games.length > 0 ? (
                 games.map((game, key) => (
-                    <div className="allGames" key={key}>
-                        <div className="allGames-info">
-                            <img src={game.imgUrl} />
-
-                            <h6>{game.category}</h6>
-                            <h2>{game.title}</h2>
-                            <a href="#" className="details-button">Details</a>
-                        </div>
-            
-                    </div>
+                    <CatalogueGame 
+                        key={key}
+                        {...game} 
+                    />
                 ))
             ) : <h3 className="no-articles">No articles yet</h3>}
         </section>
