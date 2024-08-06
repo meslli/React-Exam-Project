@@ -1,4 +1,6 @@
-const CatalogueGame = ({ imgUrl, category, title }) => {
+import { Link } from "react-router-dom"
+
+const CatalogueGame = ({ _id, imgUrl, category, title }) => {
     return (
         <div className="allGames">
             <div className="allGames-info">
@@ -6,7 +8,9 @@ const CatalogueGame = ({ imgUrl, category, title }) => {
 
                 <h6>{category}</h6>
                 <h2>{title}</h2>
-                <a href="#" className="details-button">Details</a>
+                <Link to={`/details-game/${_id}`} className="details-button">
+                    Details
+                </Link>
             </div>
         </div>
     )
