@@ -2,7 +2,12 @@ import { get, post } from "./requester"
 
 const BASE_URL = "http://localhost:3030/jsonstore/games"
 
-export const getAllGames = () => get(BASE_URL)
+export const getAllGames = async () => {
+    const response = await get(BASE_URL)
+    const games = Object.values(response)
+
+    return games
+}
 
 export const getOneGame = (gameId) => get(`${BASE_URL}/${gameId}`)
 

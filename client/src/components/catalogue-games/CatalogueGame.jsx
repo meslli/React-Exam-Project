@@ -9,7 +9,7 @@ const CatalogueGames = () => {
 
     useEffect(() => {
         getAllGames()
-            .then(res => setGames(Object.values(res)))
+            .then(res => setGames(res))
     }, [])
 
     return (

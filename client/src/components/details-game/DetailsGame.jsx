@@ -15,7 +15,6 @@ const DetailsGame = () => {
     }, [])   
     
     return (
-        // <!--Details Page-->
         <section id="game-details">
             <h1>Game Details</h1>
             <div className="info-section">
