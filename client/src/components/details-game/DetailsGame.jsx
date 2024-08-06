@@ -1,4 +1,4 @@
-const GameDetails = () => {
+const DetailsGame = () => {
     return (
         // <!--Details Page-->
         <section id="game-details">
@@ -58,4 +58,4 @@ const GameDetails = () => {
     )
 }
 
-export default GameDetails
+export default DetailsGame
