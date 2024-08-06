@@ -1,4 +1,14 @@
+import { useEffect, useState } from 'react'
+import { getAllGames } from '../../api/games-api'
+
 const CatalogueGames = () => {
+    const [games, setGames] = useState([])
+
+    useEffect(() => {
+        getAllGames()
+            .then(res => setGames(res))
+    }, [])
+
     return (
         // <!-- Catalogue -->
         <section id="catalog-page">
