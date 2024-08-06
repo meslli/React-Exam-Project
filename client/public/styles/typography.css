@@ -22,7 +22,7 @@ h6 {
 }
 
 p,
-div {
+div:not(#root, #box) {
     margin: 0 1em 0.5em 1em;
 }
 
