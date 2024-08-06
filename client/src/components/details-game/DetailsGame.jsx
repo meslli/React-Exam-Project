@@ -57,11 +57,7 @@ const DetailsGame = () => {
                     {comments.length > 0 
                         ? (
                             <ul>
-                                {comments.map(comment => (
-                                    <li className="comment" key={comment._id}>
-                                        <p>{comment.username}: {comment.userComment}</p>
-                                    </li>
-                                ))}
+                                {comments.map(comment => <Comment id={comment._id} {...comment}/>)}
                             </ul>
                         )
                         : <p className="no-comment">No comments.</p>
