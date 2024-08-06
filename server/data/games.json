@@ -1,0 +1,12 @@
+{
+    "games": {
+        "f3aaeb05-7f80-4e14-9584-940c77217b6a": {
+            "title": "PUBG", 
+            "category": "Battle royale", 
+            "maxLevel": "100", 
+            "imgUrl": "https://cdn1.epicgames.com/spt-assets/53ec4985296b4facbe3a8d8d019afba9/pubg-battlegrounds-1e9a7.jpg", 
+            "summary": "PUBG: BATTLEGROUNDS is a battle royale that pits 100 players against each other. Players will land, loot, and survive in a shrinking battleground as they outplay their opponents to become the lone survivor.",
+            "_id": "f3aaeb05-7f80-4e14-9584-940c77217b6a"
+        }
+    }
+}
