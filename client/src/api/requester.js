@@ -13,10 +13,16 @@ const requester = async (method, url, data) => {
         options.body = JSON.stringify(data)
     }
 
-    const response = await fetch(url, options)
-    const result = await response.json()
+    try {
+        const response = await fetch(url, options)
+        const result = await response.json()
 
-    return result;
+        return result;
+    } catch(error) {
+        console.error(error.message)
+    }
+
+    
 }
 
 export const get = requester.bind(null, 'GET')
