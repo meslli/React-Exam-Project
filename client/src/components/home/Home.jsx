@@ -11,7 +11,7 @@ const Home = () => {
         (async () => {
             const res = await getAllGames()
             
-            setLatestGames(res.reverse.slice(0, 3))
+            setLatestGames(res.reverse().slice(0, 3))
         })()
     }, [])
 
