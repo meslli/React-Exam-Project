@@ -1,21 +1,34 @@
 import { Link } from "react-router-dom"
 
+import { useEffect, useState } from "react"
+
 import useForm from "../../hooks/useForm"
+import { useRegister } from "../../hooks/useLogin"
 
 const initialValues = {
     email: "",
     password: "",
     ["confirm-password"]: ""
 }
-    
 
-const Register = () => {
-    const { values, updateValues } = useForm(initialValues);
+const Register = () => {  
+    const register = useRegister()
+    const [pswError, setPswError] = useState(false)
+    const { values, updateValues, submitForm } = useForm(initialValues, register);
+  
+    useEffect(() => {
+        if(values.password !== values['confirm-password'] && values['confirm-password'] !== '') {
+            setPswError(true)
+            return
+        } 
+
+        setPswError(false)
+    }, [values.password, values['confirm-password']])
 
     return (
         // <!-- Register Page ( Only for Guest users ) -->
         <section id="register-page" className="content auth">
-            <form id="register">
+            <form id="register" onSubmit={submitForm}>
                 <div className="container">
                     <div className="brand-logo"></div>
                     <h1>Register</h1>
@@ -37,7 +50,6 @@ const Register = () => {
                         value={values.password}
                         onChange={updateValues} 
                     />
-                    
 
                     <label htmlFor="confirm-password">Confirm Password: </label>
                     <input 
@@ -47,6 +59,8 @@ const Register = () => {
                         value={values["confirm-password"]}
                         onChange={updateValues} 
                     />
+
+                    {pswError && <p style={{marginTop: '3px', color: 'red', fontSize: '18px'}}>Passwords do not match!</p>}
 
                     <input 
                         className="btn submit"
