@@ -1,42 +1,16 @@
-import { useEffect, useState } from 'react';
-
 import { useParams } from 'react-router-dom';
 
-import {  getOneGame } from '../../api/games-api';
-import { addGameComment, getGameComments } from '../../api/comments-api';
+import { useGetGame } from '../../hooks/useGames';
+import { useGetComments } from '../../hooks/useComments';
 
 import Comment from './comment/Comment'
+import CreateComment from './comment/CreateComment'
 
 const DetailsGame = () => {
-    const [game, setGame] = useState([])
-    const [comments, setComments] = useState([])
-    const [userComment, setUserComment] = useState("")
-    const [username, setUsername] = useState("")
     const { gameId } = useParams()
-
-    useEffect(() => {
-        fetchGameDetails()
-    }, [])   
-    
-    const fetchGameDetails = async () => {
-        const res = await getOneGame(gameId)
-            
-        setGame(res)
-        setComments(Object.values(res.comments))
-    }
-
-    const submitComment = async (e) => {
-        e.preventDefault()
-
-        await addGameComment(gameId, { username, userComment })
-        
-        getGameComments(gameId)
-            .then(res => setComments(res))
-
-        setUsername('')
-        setUserComment('')
-    }
-
+    const { comments, updateComments } = useGetComments(gameId)
+    const [game] = useGetGame(gameId, updateComments)
+  
     return (
         <section id="game-details">
             <h1>Game Details</h1>
@@ -76,28 +50,7 @@ const DetailsGame = () => {
 
             {/* <!-- Bonus --> */}
             {/* <!-- Add Comment ( Only for logged-in users, which is not creators of the current game ) --> */}
-            <article className="create-comment">
-                <label>Add new comment:</label>
-
-                <form className="form" onSubmit={submitComment}>
-                    <input 
-                        type='text' 
-                        name='username' 
-                        placeholder='Enter your username...' 
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
-
-                    <textarea 
-                        name="comment" 
-                        placeholder="Comment......"
-                        value={userComment}
-                        onChange={(e) => setUserComment(e.target.value)}
-                    ></textarea>
-
-                    <input className="btn submit" type="submit" value="Add Comment" />
-                </form>
-            </article>
+            <CreateComment gameId={gameId} />
         </section>
     )
 }
