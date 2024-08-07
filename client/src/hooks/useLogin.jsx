@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { useContext } from "react"
 
-import { loginUser } from "../api/users-api"
+import { loginUser, registerUser } from "../api/users-api"
 
 import { UserContext } from "../context/UserContext"
 
@@ -22,4 +22,23 @@ export const useLogin = () => {
     }
 
     return login
+}
+
+export const useRegister = () => {
+    const navigate = useNavigate()
+    const { changeAuthState } = useContext(UserContext)
+
+    const register = async (values) => {
+        try {
+            const {password, ...result} = await registerUser(values.email, values.password)
+
+            changeAuthState(result)
+            localStorage.setItem('auth', JSON.stringify(result))
+            navigate('/')
+        } catch(err) {
+            console.error(err.message)
+        }
+    }
+
+    return register
 }

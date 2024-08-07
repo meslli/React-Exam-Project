@@ -20,8 +20,8 @@ const EditGame= () => {
 
                     <label htmlFor="summary">Summary:</label>
                     <textarea name="summary" id="summary"></textarea>
+                    
                     <input className="btn submit" type="submit" value="Edit Game" />
-
                 </div>
             </form>
         </section>
