@@ -1,5 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 
+import { UserProvider } from './context/UserContext'
+
 import Header from "./components/header/Header"
 import Home from "./components/home/Home"
 import Login from './components/login/Login'
@@ -11,21 +13,23 @@ import EditGame from './components/edit-game/EditGame'
 
 function App() {
   return (
-    <div id="box">
-      <Header />
+    <UserProvider>
+      <div id="box">
+        <Header />
 
-      <main id="main-content">
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/catalogue-games' element={<CatalogueGames />} />
-          <Route path='/details-game/:gameId' element={<DetailsGame />} />
-          <Route path='/create-game' element={<CreateGame />} />
-          <Route path='/edit-game' element={<EditGame />} />
-        </Routes>
-      </main>
-    </div>
+        <main id="main-content">
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/catalogue-games' element={<CatalogueGames />} />
+            <Route path='/details-game/:gameId' element={<DetailsGame />} />
+            <Route path='/create-game' element={<CreateGame />} />
+            <Route path='/edit-game' element={<EditGame />} />
+          </Routes>
+        </main>
+      </div>
+    </UserProvider>
   )
 }
 
