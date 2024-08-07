@@ -3,11 +3,7 @@ import { getGameComments } from '../api/comments-api';
 
 export const useGetComments = (gameId) => {
     const [comments, setComments] = useState([])
-
-    useEffect(() => {
-        fetchComments()
-    }, [])
-
+    
     const updateComments = (value) => {
         setComments(value)
     }
@@ -15,6 +11,7 @@ export const useGetComments = (gameId) => {
     const fetchComments = () => {
         getGameComments(gameId)
             .then(res => setComments(res))
+            .catch(err => console.error(err))
     }
 
     return { comments, updateComments, fetchComments } 

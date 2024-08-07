@@ -28,9 +28,12 @@ export const useGetGame = (gameId, updateComments) => {
     
     const fetchGameDetails = async () => {
         const res = await getOneGame(gameId)
-            
+
         setGame(res)
-        updateComments(Object.values(res.comments))
+
+        if(res.comments) {
+            updateComments(Object.values(res.comments))
+        }
     }
 
     return [game]
