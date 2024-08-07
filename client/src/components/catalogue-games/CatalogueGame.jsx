@@ -1,17 +1,10 @@
-import { useEffect, useState } from 'react'
-
-import { getAllGames } from '../../api/games-api'
-
 import CatalogueGame from './catalogue-game/CatalogueGame'
 
+import { useGetAllGames } from '../../hooks/useGames'
+
 const CatalogueGames = () => {
-    const [games, setGames] = useState([])
-
-    useEffect(() => {
-        getAllGames()
-            .then(res => setGames(res))
-    }, [])
-
+    const [games] = useGetAllGames()
+  
     return (
         <section id="catalog-page">
             <h1>All Games</h1>
