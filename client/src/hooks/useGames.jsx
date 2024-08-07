@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 
-import { getAllGames, getOneGame } from '../api/games-api'
+import { createGame, getAllGames, getOneGame } from '../api/games-api'
+import { useNavigate } from 'react-router-dom'
 
 export const useGetAllGames = () => {
     const [games, setGames] = useState([])
@@ -33,4 +34,20 @@ export const useGetGame = (gameId, updateComments) => {
     }
 
     return [game]
+}
+
+export const useCreateGame = () => {
+    const navigate = useNavigate()
+
+    try {
+        const create = async (gameData) => {
+            const { _id } = await createGame(gameData)
+
+            navigate(`/details-game/${_id}`)   
+        } 
+        
+        return create
+    } catch(err) {
+        console.error(err.message)
+    }
 }
