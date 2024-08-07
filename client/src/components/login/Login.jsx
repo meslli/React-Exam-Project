@@ -5,7 +5,7 @@ import useForm from "../../hooks/useForm";
 
 
 const Login = () => {
-    const [submitForm] = useForm();
+    const { submitForm } = useForm();
 
     return(
         // <!-- Login Page ( Only for Guest users ) -->

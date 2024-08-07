@@ -15,7 +15,7 @@ const useForm = () => {
         e.preventDefault()
     }
 
-    return [ values, updateValues, submitForm ]
+    return { values, updateValues, submitForm }
 }
 
 export default useForm

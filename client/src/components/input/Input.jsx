@@ -1,7 +1,7 @@
 import useForm from "../../hooks/useForm"
 
 const Input = ({ name, type, id }) => {
-    const [values, updateValues] = useForm();
+    const { values, updateValues } = useForm();
 
     return (
         <>
