@@ -1,16 +1,8 @@
 import { Link } from "react-router-dom"
 
-import useForm from "../../hooks/useForm"
-
-const initialValues = {
-    email: '',
-    password: '',
-    ["confirm-password"]: ''
-}
+import Input from "../input/Input";
 
 const Register = () => {
-    const [values, updateValues] = useForm(initialValues);
-
     return (
         // <!-- Register Page ( Only for Guest users ) -->
         <section id="register-page" className="content auth">
@@ -19,32 +11,25 @@ const Register = () => {
                     <div className="brand-logo"></div>
                     <h1>Register</h1>
 
-                    <label htmlFor="email">Email:</label>
-                    <input 
+                    <label htmlFor="email">Email: </label>
+                    <Input 
                         type="email" 
                         id="email" 
                         name="email"
-                        value={values.email}
-                        onChange={updateValues} 
-                        placeholder="maria@email.com" 
                     />
 
-                    <label htmlFor="pass">Password:</label>
-                    <input 
+                    <label htmlFor="password">Password: </label>
+                    <Input 
                         type="password" 
                         name="password" 
                         id="register-password"
-                        value={values.password}
-                        onChange={updateValues} 
                     />
 
-                    <label htmlFor="con-pass">Confirm Password:</label>
-                    <input 
+                    <label htmlFor="confirm-password">Confirm Password: </label>
+                    <Input 
                         type="password" 
                         name="confirm-password" 
                         id="confirm-password" 
-                        value={values['confirm-password']}
-                        onChange={updateValues}
                     />
 
                     <input 

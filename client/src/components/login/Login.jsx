@@ -1,11 +1,9 @@
-import useForm from "../../hooks/useForm"
-
 import { Link } from "react-router-dom";
 
-const initialValues = { email: '', password: '' }
+import Input from '../input/Input'
+
 
 const Login = () => {
-    const [values, updateValues] = useForm(initialValues);
 
     return(
         // <!-- Login Page ( Only for Guest users ) -->
@@ -17,23 +15,18 @@ const Login = () => {
 
                     <h1>Login</h1>
 
-                    <label htmlFor="email">Email:</label>
-                    <input 
-                        type="email" 
-                        id="email" 
-                        name="email" 
-                        value={values.email}
-                        onChange={updateValues}
-                        placeholder="Sokka@gmail.com" 
+                    <label htmlFor="email">Email: </label>
+                    <Input 
+                        name="email"
+                        type="email"
+                        id="email"
                     />
 
-                    <label htmlFor="login-pass">Password:</label>
-                    <input 
-                        type="password" 
-                        id="login-password" 
-                        name="password" 
-                        value={values.password}
-                        onChange={updateValues}
+                    <label htmlFor="password">Password: </label>
+                    <Input 
+                        name="password"
+                        type="email"
+                        id="login-password"
                     />
                     
                     <input type="submit" className="btn submit" value="Login" />
