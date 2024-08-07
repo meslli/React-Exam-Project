@@ -1,6 +1,7 @@
 import { useState } from "react"
 
-const useForm = (initialValues) => {
+
+const useForm = (initialValues, submitFunction) => {
     const [values, setValues] = useState(initialValues)
 
     const updateValues = (e) => {
@@ -13,6 +14,7 @@ const useForm = (initialValues) => {
     const submitForm = (e) => {
         e.preventDefault()
 
+        submitFunction(values)
     }
 
     return { values, updateValues, submitForm }

@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 
 import useForm from "../../hooks/useForm";
+import { loginUser } from "../../api/users-api"
+import { useLogin } from "../../hooks/useLogin";
 
 const initialValues = {
     email: "",
@@ -8,7 +10,8 @@ const initialValues = {
 }
 
 const Login = () => {
-    const { values, updateValues, submitForm } = useForm(initialValues);
+    const login = useLogin()
+    const { values, updateValues, submitForm } = useForm(initialValues, login);
 
     return(
         // <!-- Login Page ( Only for Guest users ) -->
