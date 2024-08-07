@@ -1,8 +1,6 @@
-import { useState } from "react"
 
-
-const useForm = () => {
-    const [values, setValues] = useState({})
+const useForm = (initialValues) => {
+    const [values, setValues] = useState(initialValues)
 
     const updateValues = (e) => {
         setValues(oldValues =>  ({
