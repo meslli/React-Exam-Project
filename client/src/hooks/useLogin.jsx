@@ -14,6 +14,7 @@ export const useLogin = () => {
             const result = await loginUser(values)
 
             changeAuthState(result)
+            localStorage.setItem('auth', JSON.stringify(result))
             navigate('/')
         } catch(err) {
             console.error(err.message)

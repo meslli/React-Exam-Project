@@ -1,4 +1,4 @@
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
 
 const defaultData = {
     email: "",
@@ -23,6 +23,14 @@ export const UserProvider = ({ children }) => {
         authState,
         changeAuthState,
     }
+
+    useEffect(() => {
+        const localAuth = localStorage.getItem('auth')
+
+        if(localAuth) {
+            setAuthState(JSON.parse(localAuth))
+        }
+    }, [])
 
     return (
         <UserContext.Provider value={ contextData }>
