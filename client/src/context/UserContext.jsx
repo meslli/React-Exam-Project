@@ -12,7 +12,7 @@ export const UserContext = createContext(defaultData)
 export const UserProvider = ({ children }) => {
     const [authState, setAuthState] = useState({})
 
-    const changeAuthState = (data) => {
+    const changeAuthState = (data) => {        
         setAuthState(data)
     }
 
