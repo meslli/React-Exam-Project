@@ -1,4 +1,12 @@
+import useForm from "../../hooks/useForm"
+
+import { Link } from "react-router-dom";
+
+const initialValues = { email: '', password: '' }
+
 const Login = () => {
+    const [values, updateValues] = useForm(initialValues);
+
     return(
         // <!-- Login Page ( Only for Guest users ) -->
         <section id="login-page" className="auth">
@@ -9,16 +17,29 @@ const Login = () => {
 
                     <h1>Login</h1>
 
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" placeholder="Sokka@gmail.com" />
+                    <label htmlFor="email">Email:</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        value={values.email}
+                        onChange={updateValues}
+                        placeholder="Sokka@gmail.com" 
+                    />
 
-                    <label for="login-pass">Password:</label>
-                    <input type="password" id="login-password" name="password" />
+                    <label htmlFor="login-pass">Password:</label>
+                    <input 
+                        type="password" 
+                        id="login-password" 
+                        name="password" 
+                        value={values.password}
+                        onChange={updateValues}
+                    />
                     
                     <input type="submit" className="btn submit" value="Login" />
                     
                     <p className="field">
-                        <span>If you don't have profile click <a href="#">here</a></span>
+                        <span>If you don't have profile click <Link to="/register">here</Link></span>
                     </p>
                 </div>
             </form>
