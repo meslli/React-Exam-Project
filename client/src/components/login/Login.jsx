@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
 
-import Input from '../input/Input'
 import useForm from "../../hooks/useForm";
 
+const initialValues = {
+    email: "",
+    password: ""
+}
 
 const Login = () => {
-    const { submitForm } = useForm();
+    const { values, updateValues, submitForm } = useForm(initialValues);
 
     return(
         // <!-- Login Page ( Only for Guest users ) -->
@@ -18,19 +21,23 @@ const Login = () => {
                     <h1>Login</h1>
 
                     <label htmlFor="email">Email: </label>
-                    <Input 
+                    <input 
                         name="email"
                         type="email"
                         id="email"
+                        value={values.email}
+                        onChange={updateValues} 
                     />
 
                     <label htmlFor="password">Password: </label>
-                    <Input 
-                        name="password"
-                        type="password"
-                        id="login-password"
+                    <input 
+                         name="password"
+                         type="password"
+                         id="login-password"
+                        value={values.password}
+                        onChange={updateValues} 
                     />
-                    
+        
                     <input type="submit" className="btn submit" value="Login" />
                     
                     <p className="field">
