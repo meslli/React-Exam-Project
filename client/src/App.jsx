@@ -1,7 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
 
-import { UserProvider } from './context/UserContext'
-
 import Header from "./components/header/Header"
 import Home from "./components/home/Home"
 import Login from './components/login/Login'
@@ -13,7 +11,6 @@ import EditGame from './components/edit-game/EditGame'
 
 function App() {
   return (
-    <UserProvider>
       <div id="box">
         <Header />
 
@@ -29,7 +26,6 @@ function App() {
           </Routes>
         </main>
       </div>
-    </UserProvider>
   )
 }
 

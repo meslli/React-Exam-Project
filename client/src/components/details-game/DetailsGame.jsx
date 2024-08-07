@@ -10,7 +10,7 @@ const DetailsGame = () => {
     const { gameId } = useParams()
     const { comments, updateComments } = useGetComments(gameId)
     const [game] = useGetGame(gameId, updateComments)
-  
+
     return (
         <section id="game-details">
             <h1>Game Details</h1>
