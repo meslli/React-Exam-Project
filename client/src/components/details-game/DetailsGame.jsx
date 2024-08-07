@@ -3,7 +3,9 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import {  getOneGame } from '../../api/games-api';
-import { addGameComment } from '../../api/comments-api';
+import { addGameComment, getGameComments } from '../../api/comments-api';
+
+import Comment from './comment/Comment'
 
 const DetailsGame = () => {
     const [game, setGame] = useState([])
@@ -28,7 +30,8 @@ const DetailsGame = () => {
 
         await addGameComment(gameId, { username, userComment })
         
-        fetchGameDetails()
+        getGameComments(gameId)
+            .then(res => setComments(res))
 
         setUsername('')
         setUserComment('')
@@ -57,7 +60,7 @@ const DetailsGame = () => {
                     {comments.length > 0 
                         ? (
                             <ul>
-                                {comments.map(comment => <Comment id={comment._id} {...comment}/>)}
+                                {comments.map(comment => <Comment key={comment._id} {...comment} />)}
                             </ul>
                         )
                         : <p className="no-comment">No comments.</p>
