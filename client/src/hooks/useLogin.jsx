@@ -11,7 +11,7 @@ export const useLogin = () => {
 
     const login = async (values) => {
         try {
-            const result = await loginUser(values)
+            const { password, ...result } = await loginUser(values)
 
             changeAuthState(result)
             localStorage.setItem('auth', JSON.stringify(result))
@@ -30,7 +30,7 @@ export const useRegister = () => {
 
     const register = async (values) => {
         try {
-            const {password, ...result} = await registerUser(values.email, values.password)
+            const { password, ...result } = await registerUser(values.email, values.password)
 
             changeAuthState(result)
             localStorage.setItem('auth', JSON.stringify(result))
