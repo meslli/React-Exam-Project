@@ -14,7 +14,6 @@ const CreateGame = () => {
     const { values, updateValues, submitForm } = useForm(initialValues, create)
 
     return (
-        // <!-- Create Page ( Only for logged-in users ) -->
         <section id="create-page" className="auth">
             <form id="create" onSubmit={submitForm}>
                 <div className="container">
