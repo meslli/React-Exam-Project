@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useContext } from 'react';
 
 import { useGetGame } from '../../hooks/useGames';
@@ -41,7 +41,7 @@ const DetailsGame = () => {
             <div className="info-section">
 
                 <div className="game-header">
-                    <img className="game-img" src={game.imgUrl} />
+                    <img className="game-img" src={game.imageUrl} />
 
                     <h1>{game.title}</h1>
                     <span className="levels">MaxLevel: {game.maxLevel}</span>
@@ -67,7 +67,7 @@ const DetailsGame = () => {
 
                 {isOwner && (
                     <div className="buttons">
-                        <a href="#" className="button">Edit</a>
+                        <Link to={`/edit-game/${gameId}`} className="button">Edit</Link>
                         <a href="#" onClick={deleteGameHandler} className="button">Delete</a>
                     </div>
                 )}
