@@ -18,3 +18,15 @@ export const createGame = (data) => post(BASE_URL, data)
 export const deleteGame = (gameId) => del(`${BASE_URL}/${gameId}`)
 
 export const updateGame = (data) => put(`${BASE_URL}/${data._id}`, data)
+
+export const getLatestGames = async () => {
+    const params = new URLSearchParams({
+        sortBy: "_createdOn desc",
+        pageSize: 3
+    })
+
+    const response = await get(`${BASE_URL}?${params.toString()}`)
+    const latestGames = Object.values(response)
+
+    return latestGames
+}

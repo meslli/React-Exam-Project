@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-import { getAllGames } from "../../api/games-api"
+import { getLatestGames } from "../../api/games-api"
 
 import LatestGame from "./latest-game/LatestGame"
 
@@ -9,9 +9,9 @@ const Home = () => {
 
     useEffect(() => {
         (async () => {
-            const res = await getAllGames()
+            const latestGames = await getLatestGames()
             
-            setLatestGames(res.reverse().slice(0, 3))
+            setLatestGames(latestGames)
         })()
     }, [])
 
@@ -25,7 +25,6 @@ const Home = () => {
 
             <div id="home-page">
                 <h1>Latest Games</h1>
-
 
                 {latestGames.length > 0 
                     ? latestGames.map(game => <LatestGame key={game._id} {...game} />)
