@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import { useContext } from 'react';
 
 import { useGetGame } from '../../hooks/useGames';
 import { useGetComments } from '../../hooks/useComments';
@@ -6,10 +7,16 @@ import { useGetComments } from '../../hooks/useComments';
 import Comment from './comment/Comment'
 import CreateComment from './comment/CreateComment'
 
+import { UserContext } from '../../context/UserContext';
+
 const DetailsGame = () => {
+    const { isAuthenticated } = useContext(UserContext)
     const { gameId } = useParams()
-    const { comments, updateComments } = useGetComments(gameId)
-    const [ game ] = useGetGame(gameId, updateComments)
+    const { comments } = useGetComments(gameId)
+    const [ game ] = useGetGame(gameId)
+
+    // TO DO: 
+    // Display old comments with new one after submit
 
     return (
         <section id="game-details">
@@ -50,7 +57,7 @@ const DetailsGame = () => {
 
             {/* <!-- Bonus --> */}
             {/* <!-- Add Comment ( Only for logged-in users, which is not creators of the current game ) --> */}
-            <CreateComment gameId={gameId} />
+            {isAuthenticated && <CreateComment gameId={gameId} />}
         </section>
     )
 }

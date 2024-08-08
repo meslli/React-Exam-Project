@@ -1,7 +1,7 @@
-const Comment = ({ username, userComment }) => {
+const Comment = ({ comment }) => {
     return (
         <li className="comment" >
-            <p>{username}: {userComment}</p>
+            <p>Username: {comment}</p>
         </li>
     )
 }

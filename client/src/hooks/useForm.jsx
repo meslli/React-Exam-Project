@@ -14,6 +14,8 @@ const useForm = (initialValues, submitFunction) => {
         e.preventDefault()
 
         submitFunction(values)
+
+        setValues(initialValues)
     }
 
     return { values, updateValues, submitForm }

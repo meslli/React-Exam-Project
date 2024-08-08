@@ -19,7 +19,7 @@ export const useGetAllGames = () => {
     return [ games ]
 }
 
-export const useGetGame = (gameId, updateComments) => {
+export const useGetGame = (gameId) => {
     const [game, setGame] = useState([])
 
     useEffect(() => {
@@ -30,10 +30,6 @@ export const useGetGame = (gameId, updateComments) => {
         const res = await getOneGame(gameId)
 
         setGame(res)
-
-        if(res.comments) {
-            updateComments(Object.values(res.comments))
-        }
     }
 
     return [game]

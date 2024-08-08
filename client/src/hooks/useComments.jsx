@@ -1,9 +1,13 @@
-import { useState } from 'react';
-import { getGameComments } from '../api/comments-api';
+import { useEffect, useState } from 'react';
+import { addGameComment, getGameComments } from '../api/comments-api';
 
 export const useGetComments = (gameId) => {
     const [comments, setComments] = useState([])
     
+    useEffect(() => {
+        fetchComments()
+    }, [gameId])
+
     const updateComments = (value) => {
         setComments(value)
     }
@@ -15,4 +19,16 @@ export const useGetComments = (gameId) => {
     }
 
     return { comments, updateComments, fetchComments } 
+}
+
+export const useCreateComment = () => {
+    const createComment = async (data) => {
+        try {
+            await addGameComment(data)
+        } catch(err) {
+            console.err(err.message)
+        }
+    }
+ 
+    return createComment
 }

@@ -1,43 +1,21 @@
-import { useState } from "react"
+import { useCreateComment } from "../../../hooks/useComments"
 
-import { addGameComment } from "../../../api/comments-api"
-
-import { useGetComments } from "../../../hooks/useComments"
+import useForm from "../../../hooks/useForm"
 
 const CreateComment = ({ gameId }) => {
-    const [userComment, setUserComment] = useState("")
-    const [username, setUsername] = useState("")
-    const { fetchComments } = useGetComments(gameId)
-    
-    const submitComment = async (e) => {
-        e.preventDefault()
-
-        await addGameComment(gameId, { username, userComment })
-        
-        fetchComments()
-
-        setUsername('')
-        setUserComment('')
-    }
+    const createComment = useCreateComment()
+    const { values, updateValues, submitForm } = useForm({ gameId, comment: '' }, createComment)
 
     return (
         <article className="create-comment">
             <label>Add new comment:</label>
 
-            <form className="form" onSubmit={submitComment}>
-                <input 
-                    type='text' 
-                    name='username' 
-                    placeholder='Enter your username...' 
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                />
-
+            <form className="form" onSubmit={submitForm}>
                 <textarea 
                     name="comment" 
                     placeholder="Comment......"
-                    value={userComment}
-                    onChange={(e) => setUserComment(e.target.value)}
+                    value={values.comment}
+                    onChange={updateValues}
                 ></textarea>
 
                 <input className="btn submit" type="submit" value="Add Comment" />

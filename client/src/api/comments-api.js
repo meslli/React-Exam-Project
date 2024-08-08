@@ -1,13 +1,13 @@
 import { get, post } from "./requester"
 
 const BASE_URL = "http://localhost:3030/data/comments"
-const buildUrl = (gameId) => `${BASE_URL}/${gameId}/comments`
 
-export const getGameComments = async (gameId) => {
-    const response = await get(buildUrl(gameId))
-    const games = Object.values(response)
+export const getGameComments = (gameId) => {
+    const params = new URLSearchParams({
+        where: `gameId="${gameId}"`
+    })
 
-    return games
+    return get(`${BASE_URL}?${params.toString()}`)
 }
 
-export const addGameComment = (gameId, data) => post(buildUrl(gameId), data)
+export const addGameComment = (data) => post(BASE_URL, data)
