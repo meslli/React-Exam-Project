@@ -1339,6 +1339,17 @@
     	}
     };
     var seedData = {
+        games: {
+            "25d5669d-58d9-4f2b-a70b-e91e7df1497f": {
+                "_ownerId": "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
+                "title": "World Of Warcarft",
+                "category": "Quest",
+                "maxLevel": "60",
+                "imageUrl":"https://upload.wikimedia.org/wikipedia/en/6/65/World_of_Warcraft.png","summary":"World of Warcraft is set in the fantasy world of Azeroth, first introduced in Blizzard's 1994 real-time simulation computer game Warcraft: Orcs and Humans.",
+                "_createdOn": 1723101091795,
+                "_id":"25d5669d-58d9-4f2b-a70b-e91e7df1497f"
+            }
+        },
     	recipes: {
     		"3987279d-0ad4-4afb-8ca9-5b256ae3b298": {
     			_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
