@@ -1,6 +1,6 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
-const useForm = (initialValues, submitFunction) => {
+const useForm = (initialValues, submitFunction, updateComponent = false) => {
     const [values, setValues] = useState(initialValues)
 
     const updateValues = (e) => {
@@ -10,10 +10,16 @@ const useForm = (initialValues, submitFunction) => {
         }))
     }
     
-    const submitForm = (e) => {
+    useEffect(() => {
+        if(updateComponent) {
+            setValues(initialValues)
+        }
+    }, [initialValues, updateComponent])
+
+    const submitForm = async (e) => {
         e.preventDefault()
 
-        submitFunction(values)
+        await submitFunction(values)
 
         setValues(initialValues)
     }

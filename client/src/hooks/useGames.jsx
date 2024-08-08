@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import { createGame, getAllGames, getOneGame } from '../api/games-api'
+import { createGame, getAllGames, getOneGame, updateGame } from '../api/games-api'
 import { useNavigate } from 'react-router-dom'
 
 export const useGetAllGames = () => {
@@ -20,7 +20,13 @@ export const useGetAllGames = () => {
 }
 
 export const useGetGame = (gameId) => {
-    const [game, setGame] = useState([])
+    const [game, setGame] = useState({
+        title: '',
+        category: '',
+        maxLevel: '',
+        imageUrl: '',
+        summary: '',
+    })
 
     useEffect(() => {
         fetchGameDetails()
@@ -49,4 +55,10 @@ export const useCreateGame = () => {
     } catch(err) {
         console.error(err.message)
     }
+}
+
+export const useUpdateGame = () => {
+    const update = (data) => updateGame(data)
+
+    return update
 }
