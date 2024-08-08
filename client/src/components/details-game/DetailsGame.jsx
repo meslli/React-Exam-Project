@@ -10,10 +10,11 @@ import CreateComment from './comment/CreateComment'
 import { UserContext } from '../../context/UserContext';
 
 const DetailsGame = () => {
-    const { isAuthenticated } = useContext(UserContext)
+    const { isAuthenticated, userId } = useContext(UserContext)
     const { gameId } = useParams()
     const { comments } = useGetComments(gameId)
     const [ game ] = useGetGame(gameId)
+    const isOwner = game._ownerId === userId
 
     // TO DO: 
     // Display old comments with new one after submit
@@ -48,11 +49,12 @@ const DetailsGame = () => {
                     }               
                 </div>
 
-                {/* <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}
-                <div className="buttons">
-                    <a href="#" className="button">Edit</a>
-                    <a href="#" className="button">Delete</a>
-                </div>
+                {isOwner && (
+                    <div className="buttons">
+                        <a href="#" className="button">Edit</a>
+                        <a href="#" className="button">Delete</a>
+                    </div>
+                )}
             </div>
 
             {/* <!-- Bonus --> */}
