@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { getGameComments } from '../api/comments-api';
 
 export const useGetComments = (gameId) => {

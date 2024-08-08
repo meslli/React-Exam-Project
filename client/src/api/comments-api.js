@@ -1,6 +1,6 @@
 import { get, post } from "./requester"
 
-const BASE_URL = "http://localhost:3030/jsonstore/games"
+const BASE_URL = "http://localhost:3030/data/comments"
 const buildUrl = (gameId) => `${BASE_URL}/${gameId}/comments`
 
 export const getGameComments = async (gameId) => {
