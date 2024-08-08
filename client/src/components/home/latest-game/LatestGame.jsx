@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom"
 
-const LatestGame = ({ _id, imgUrl, title }) => {
+const LatestGame = ({ _id, imageUrl, title }) => {
     return (
         <div className="game">
             <div className="image-wrap">
-                <img src={imgUrl} />
+                <img src={imageUrl} />
             </div>
 
             <h3>{title}</h3>
