@@ -9,6 +9,7 @@ import CatalogueGames from './components/catalogue-games/CatalogueGame'
 import DetailsGame from './components/details-game/DetailsGame'
 import CreateGame from './components/create-game/CreateGame'
 import EditGame from './components/edit-game/EditGame'
+import RouteGuard from './components/common/RouteGuard'
 
 function App() {
   return (
@@ -20,11 +21,14 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
-            <Route path='/logout' element={<Logout />} />
             <Route path='/catalogue-games' element={<CatalogueGames />} />
             <Route path='/details-game/:gameId' element={<DetailsGame />} />
-            <Route path='/create-game' element={<CreateGame />} />
-            <Route path='/edit-game/:gameId' element={<EditGame />} />
+            
+            <Route element={<RouteGuard />}>
+              <Route path='/create-game' element={<CreateGame />} />
+              <Route path='/edit-game/:gameId' element={<EditGame />} />
+              <Route path='/logout' element={<Logout />} />
+            </Route>
           </Routes>
         </main>
       </div>
