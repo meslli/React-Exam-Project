@@ -5,6 +5,7 @@ const defaultData = {
     accessToken: "",
     isAuthenticated: false,
     changeAuthState: (data) => null,
+    localLogout: () => null,
 }
 
 export const UserContext = createContext(defaultData)
@@ -16,12 +17,10 @@ export const UserProvider = ({ children }) => {
         setAuthState(data)
     }
 
-    const contextData = {
-        email: authState.email,
-        accessToken: authState.accessToken,
-        isAuthenticated: !!authState.email,
-        authState,
-        changeAuthState,
+    const localLogout = () => {
+        localStorage.removeItem('auth')
+
+        setAuthState({})
     }
 
     useEffect(() => {
@@ -31,6 +30,15 @@ export const UserProvider = ({ children }) => {
             setAuthState(JSON.parse(localAuth))
         }
     }, [])
+
+    const contextData = {
+        email: authState.email,
+        accessToken: authState.accessToken,
+        isAuthenticated: !!authState.email,
+        authState,
+        changeAuthState,
+        localLogout
+    }
 
     return (
         <UserContext.Provider value={ contextData }>

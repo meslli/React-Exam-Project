@@ -4,6 +4,7 @@ import Header from "./components/header/Header"
 import Home from "./components/home/Home"
 import Login from './components/login/Login'
 import Register from './components/register/Register'
+import Logout from './components/logout/Logout'
 import CatalogueGames from './components/catalogue-games/CatalogueGame'
 import DetailsGame from './components/details-game/DetailsGame'
 import CreateGame from './components/create-game/CreateGame'
@@ -19,6 +20,7 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
+            <Route path='/logout' element={<Logout />} />
             <Route path='/catalogue-games' element={<CatalogueGames />} />
             <Route path='/details-game/:gameId' element={<DetailsGame />} />
             <Route path='/create-game' element={<CreateGame />} />

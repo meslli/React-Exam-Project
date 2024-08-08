@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
 
 import useForm from "../../hooks/useForm"
-import { useRegister } from "../../hooks/useLogin"
+import { useRegister } from "../../hooks/useAuth"
 
 const initialValues = {
     email: "",

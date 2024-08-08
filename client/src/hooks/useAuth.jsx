@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { useContext } from "react"
 
-import { loginUser, registerUser } from "../api/users-api"
+import { loginUser, logoutUser, registerUser } from "../api/users-api"
 
 import { UserContext } from "../context/UserContext"
 
@@ -41,4 +41,20 @@ export const useRegister = () => {
     }
 
     return register
+}
+
+export const useLogout = () => {
+    const { localLogout } = useContext(UserContext)
+
+    const logout = async () => {
+        try {
+            await logoutUser()
+            
+            localLogout()
+        } catch(err) {
+            console.error(err.message)
+        }
+    }
+
+    return logout
 }

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import useForm from "../../hooks/useForm";
 import { loginUser } from "../../api/users-api"
-import { useLogin } from "../../hooks/useLogin";
+import { useLogin } from "../../hooks/useAuth";
 
 const initialValues = {
     email: "",
