@@ -1,5 +1,5 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 import { useGetGame } from '../../hooks/useGames';
 import { useGetComments } from '../../hooks/useComments';
@@ -10,6 +10,7 @@ import Comment from './comment/Comment'
 import CreateComment from './comment/CreateComment'
 
 import { UserContext } from '../../context/UserContext';
+import ConfirmModal from './modals/ConfirmModal';
 
 const DetailsGame = () => {
     const navigate = useNavigate()
@@ -17,15 +18,17 @@ const DetailsGame = () => {
     const { gameId } = useParams()
     const { comments } = useGetComments(gameId)
     const [ game ] = useGetGame(gameId)
+    const [removeGame, setRemoveGame] = useState(false)
     const isOwner = game._ownerId === userId
 
     // TO DO: 
     // Display old comments with new one after submit
 
-    // To do 
-    // Add modal with question for delete
+    const cancelRemoveState = () => {
+      setRemoveGame(false)
+    }
 
-    const deleteGameHandler = async () => {
+    const deleteGameAction = async () => {
         try {
             await deleteGame(gameId)
 
@@ -68,13 +71,21 @@ const DetailsGame = () => {
                 {isOwner && (
                     <div className="buttons">
                         <Link to={`/edit-game/${gameId}`} className="button">Edit</Link>
-                        <a href="#" onClick={deleteGameHandler} className="button">Delete</a>
+                        <a href="#" onClick={() => setRemoveGame(true)} className="button">Delete</a>
                     </div>
                 )}
+
             </div>
 
-            {/* <!-- Bonus --> */}
-            {/* <!-- Add Comment ( Only for logged-in users, which is not creators of the current game ) --> */}
+            {removeGame && 
+                <ConfirmModal 
+                    method='delete' 
+                    gameTitle={game.title} 
+                    action={deleteGameAction}
+                    cancelAction={cancelRemoveState}
+                />
+            }
+
             {(isAuthenticated && !isOwner) && <CreateComment gameId={gameId} />}
         </section>
     )

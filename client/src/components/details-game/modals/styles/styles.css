@@ -1,0 +1,74 @@
+.modal-container {
+    position: fixed;
+    inset: 0;
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0.349);
+    z-index: 10;
+
+    .modal {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 50%;
+        height: 220px;
+        position: absolute;
+        background-color: #fff;
+        box-shadow: 2px 2px 10px 3px rgba(0, 0, 0, .5);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: .7rem .2rem;
+        border-radius: 10px;
+        transition: all .3s ease-in-out;
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            letter-spacing: .05rem;
+        }
+
+        .modal-buttons {
+            align-self: flex-end;
+
+            span {
+                cursor: pointer;
+                padding: 3px 8px;
+                font-size: 1.25rem;
+                border-radius: 4px;
+                color: #fff;
+                opacity: .8;
+                transition: opacity .3s ease-in-out;
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
+
+            span.delete { 
+                background-color: rgb(231, 1, 1);
+            }
+
+            span.cancel { 
+                background-color: rgb(124, 124, 124);
+            }
+
+            span:first-child {
+                margin-right: .5em;
+            }
+        }
+    }
+}
+
+@keyframes zoom-in {
+    0% {
+        opacity: 0;
+        left: 20%; 
+        top: 20%;
+        transform: scale(0, 0) translate(-50%, -50%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1, 1) translate(-50%, -50%);
+    }
+}
