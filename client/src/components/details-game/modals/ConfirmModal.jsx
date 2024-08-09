@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import './styles/styles.css'
 
 const ConfirmModal = ({ method, action, cancelAction, gameTitle }) => {

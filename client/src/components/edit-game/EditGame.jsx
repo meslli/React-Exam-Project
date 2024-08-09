@@ -10,12 +10,16 @@ const EditGame = () => {
     const update = useUpdateGame()
     const { values, updateValues, submitForm } = useForm(game, async (values) => {
         // TO DO add modal for confirm
-        
-        await update(values)
+        const isConfirm = confirm("Are you sure you want to edit this game?")
 
+        if(isConfirm) {
+            await update(values)
+        }
+        
         navigate(`/details-game/${gameId}`)
     }, true)
 
+  
     return (
         <section id="edit-page" className="auth">
             <form id="edit" onSubmit={submitForm}>
@@ -68,7 +72,11 @@ const EditGame = () => {
                         onChange={updateValues}
                     ></textarea>
                     
-                    <input className="btn submit" type="submit" value="Edit Game" />
+                    <input 
+                        className="btn submit" 
+                        type="submit" 
+                        value="Edit Game" 
+                    />
                 </div>
             </form>
         </section>
