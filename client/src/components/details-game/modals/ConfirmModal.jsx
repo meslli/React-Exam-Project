@@ -1,12 +1,20 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './styles/styles.css'
 
 const ConfirmModal = ({ method, action, cancelAction, gameTitle }) => {
     const ref = useRef(null)
 
     useEffect(() => {
-        ref.current.style.animation = 'zoom-in .5s ease-out';
+        ref.current.style.animation = 'zoom-in .5s ease-out'
     }, [])
+
+    const closeModal = () => {
+        ref.current.style.animation = 'zoom-out .5s ease-out'
+
+        setTimeout(() => {
+            cancelAction()
+        }, 400)
+    }
 
     return (
         <div className="modal-container">
@@ -17,7 +25,7 @@ const ConfirmModal = ({ method, action, cancelAction, gameTitle }) => {
                     <span className='delete' onClick={action}>
                         {method}
                     </span>
-                    <span className='cancel' onClick={cancelAction}>
+                    <span className='cancel' onClick={closeModal}>
                         Cancel
                     </span>   
                 </div>

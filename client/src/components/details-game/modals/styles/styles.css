@@ -72,3 +72,18 @@
         transform: scale(1, 1) translate(-50%, -50%);
     }
 }
+
+@keyframes zoom-out {
+    0% {
+       opacity: 1;
+        transform: scale(1, 1) translate(-50%, -50%);
+    }
+    
+    100% {
+        
+        opacity: 0;
+        left: 20%; 
+        top: 20%;
+        transform: scale(0, 0) translate(-50%, -50%);
+    }
+}
