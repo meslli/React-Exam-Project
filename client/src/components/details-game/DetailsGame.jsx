@@ -92,8 +92,12 @@ const DetailsGame = () => {
                 />
             }
 
-            {/* {(isAuthenticated && !isOwner) && <CreateComment gameId={gameId} />} */}
-            {isAuthenticated && <CreateComment gameId={gameId} updateDetailsComments={updateDetailsComments} />}
+            {(isAuthenticated && !isOwner) && (
+                <CreateComment 
+                    gameId={gameId} 
+                    updateDetailsComments={updateDetailsComments} 
+                />
+            )}
         </section>
     )
 }

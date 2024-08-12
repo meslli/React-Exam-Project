@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import './styles/styles.css'
 
 const ConfirmModal = ({ method, action, cancelAction, gameTitle }) => {
+    const btnTitle = `${method[0].toUpperCase()}${method.slice(1, method.length)}`
     const ref = useRef(null)
 
     useEffect(() => {
@@ -17,13 +18,13 @@ const ConfirmModal = ({ method, action, cancelAction, gameTitle }) => {
     }
 
     return (
-        <div className="modal-container">
+        <div className="modal-container" onClick={closeModal}>
             <div className='modal' ref={ref}>
                 <h2>Are you sure you want to {method} {gameTitle} game?</h2>
 
                 <div className='modal-buttons'>
                     <span className='delete' onClick={action}>
-                        {method}
+                        {btnTitle}
                     </span>
                     <span className='cancel' onClick={closeModal}>
                         Cancel
