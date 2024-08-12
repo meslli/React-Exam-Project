@@ -2,23 +2,25 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 import useForm from '../../hooks/useForm'
 import { useGetGame, useUpdateGame } from '../../hooks/useGames'
+import { useState } from 'react'
+import ConfirmModal from '../modals/ConfirmModal'
 
 const EditGame = () => {
+    const [openModal, setOpenModal] = useState(false)
     const navigate = useNavigate()
     const { gameId } = useParams()
     const [game] = useGetGame(gameId)
     const update = useUpdateGame()
     const { values, updateValues, submitForm } = useForm(game, async (values) => {
-        // TO DO add modal for confirm
-        const isConfirm = confirm("Are you sure you want to edit this game?")
-
-        if(isConfirm) {
-            await update(values)
-        }
+        await update(values)
         
         navigate(`/details-game/${gameId}`)
     }, true)
 
+    const cancelEdit = () => {
+        navigate(`/details-game/${gameId}`)
+        setOpenModal(false)
+    }
   
     return (
         <section id="edit-page" className="auth">
@@ -71,13 +73,22 @@ const EditGame = () => {
                         value={values.summary}
                         onChange={updateValues}
                     ></textarea>
-                    
+                   
                     <input 
+                        type='button' 
                         className="btn submit" 
-                        type="submit" 
-                        value="Edit Game" 
-                    />
+                        value="Edit"
+                        onClick={() => setOpenModal(true)} 
+                    />    
                 </div>
+
+                {openModal && (
+                    <ConfirmModal 
+                        method='edit'
+                        cancelAction={cancelEdit} 
+                        gameTitle={values.title}
+                    />
+                )}
             </form>
         </section>
     )
