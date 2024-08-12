@@ -23,12 +23,12 @@ const ConfirmModal = ({ method, action, cancelAction, gameTitle }) => {
                 <h2>Are you sure you want to {method} {gameTitle} game?</h2>
 
                 <div className='modal-buttons'>
-                    <span className='delete' onClick={action}>
+                    <button type="submit" className='delete' onClick={action}>
                         {btnTitle}
-                    </span>
-                    <span className='cancel' onClick={closeModal}>
+                    </button>
+                    <button className='cancel' onClick={closeModal}>
                         Cancel
-                    </span>   
+                    </button>   
                 </div>
             </div>
         </div>

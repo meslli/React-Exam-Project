@@ -30,10 +30,12 @@
         .modal-buttons {
             align-self: flex-end;
 
-            span {
+            button {
+                outline: none;
                 cursor: pointer;
                 padding: 3px 8px;
                 font-size: 1.25rem;
+                border: none;
                 border-radius: 4px;
                 color: #fff;
                 opacity: .8;
@@ -44,15 +46,15 @@
                 }
             }
 
-            span.delete { 
+            button.delete { 
                 background-color: rgb(231, 1, 1);
             }
 
-            span.cancel { 
+            button.cancel { 
                 background-color: rgb(124, 124, 124);
             }
 
-            span:first-child {
+            button:first-child {
                 margin-right: .5em;
             }
         }

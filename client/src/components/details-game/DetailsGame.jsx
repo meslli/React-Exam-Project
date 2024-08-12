@@ -10,7 +10,7 @@ import Comment from './comment/Comment'
 import CreateComment from './comment/CreateComment'
 
 import { UserContext } from '../../context/UserContext';
-import ConfirmModal from './modals/ConfirmModal';
+import ConfirmModal from '../modals/ConfirmModal';
 
 const DetailsGame = () => {
     const navigate = useNavigate()
