@@ -1,5 +1,5 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import { useGetGame } from '../../hooks/useGames';
 import { useGetComments } from '../../hooks/useComments';
@@ -14,6 +14,7 @@ import ConfirmModal from './modals/ConfirmModal';
 
 const DetailsGame = () => {
     const navigate = useNavigate()
+    const [detailsComments, setDetailsComments] = useState([])
     const { isAuthenticated, userId } = useContext(UserContext)
     const { gameId } = useParams()
     const { comments } = useGetComments(gameId)
@@ -21,8 +22,9 @@ const DetailsGame = () => {
     const [removeGame, setRemoveGame] = useState(false)
     const isOwner = game._ownerId === userId
 
-    // TO DO: 
-    // Display old comments with new one after submit
+    const updateDetailsComments = (value) => {
+        setDetailsComments(value)
+    }
 
     const cancelRemoveState = () => {
       setRemoveGame(false)
@@ -37,6 +39,10 @@ const DetailsGame = () => {
             console.error(err.message)
         }
     }
+
+    useEffect(() => {
+        setDetailsComments(comments)
+    }, [comments])
 
     return (
         <section id="game-details">
@@ -58,10 +64,10 @@ const DetailsGame = () => {
                 <div className="details-comments">
                     <h2>Comments:</h2>
 
-                    {comments.length > 0 
+                    {detailsComments.length > 0 
                         ? (
                             <ul>
-                                {comments.map(comment => <Comment key={comment._id} {...comment} />)}
+                                {detailsComments.map(comment => <Comment key={comment._id} {...comment} />)}
                             </ul>
                         )
                         : <p className="no-comment">No comments.</p>
@@ -86,7 +92,8 @@ const DetailsGame = () => {
                 />
             }
 
-            {(isAuthenticated && !isOwner) && <CreateComment gameId={gameId} />}
+            {/* {(isAuthenticated && !isOwner) && <CreateComment gameId={gameId} />} */}
+            {isAuthenticated && <CreateComment gameId={gameId} updateDetailsComments={updateDetailsComments} />}
         </section>
     )
 }

@@ -2,9 +2,12 @@ import { useCreateComment } from "../../../hooks/useComments"
 
 import useForm from "../../../hooks/useForm"
 
-const CreateComment = ({ gameId }) => {
-    const createComment = useCreateComment()
-    const { values, updateValues, submitForm } = useForm({ gameId, comment: '' }, createComment)
+const CreateComment = ({ gameId, updateDetailsComments }) => {
+    const createComment = useCreateComment(gameId)
+    const { values, updateValues, submitForm } = useForm({ gameId, comment: '' }, async (values) => {
+        const comments = await createComment(values)
+        updateDetailsComments(comments)
+    })
 
     return (
         <article className="create-comment">

@@ -21,12 +21,15 @@ export const useGetComments = (gameId) => {
     return { comments, updateComments, fetchComments } 
 }
 
-export const useCreateComment = () => {
+export const useCreateComment = (gameId) => {
     const createComment = async (data) => {
         try {
             await addGameComment(data)
+            const res = await getGameComments(gameId)
+
+            return res
         } catch(err) {
-            console.err(err.message)
+            console.error(err.message)
         }
     }
  
