@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom"
 
-const CatalogueGame = ({ _id, imgUrl, category, title }) => {
+const CatalogueGame = ({ _id, imageUrl, category, title }) => {
     return (
         <div className="allGames">
             <div className="allGames-info">
-                <img src={imgUrl} />
+                <img src={imageUrl} />
 
                 <h6>{category}</h6>
                 <h2>{title}</h2>

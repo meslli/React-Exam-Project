@@ -10,7 +10,7 @@ const Home = () => {
     useEffect(() => {
         (async () => {
             const latestGames = await getLatestGames()
-            
+
             setLatestGames(latestGames)
         })()
     }, [])
