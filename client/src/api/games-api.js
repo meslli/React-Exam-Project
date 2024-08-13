@@ -25,7 +25,10 @@ export const getLatestGames = async () => {
         pageSize: 3
     })
 
-    const response = await get(`${BASE_URL}?${params.toString()}`)
+    let paramStr = params.toString()
+    let formattedParamStr = paramStr.replace('+', '%20')
+
+    const response = await get(`${BASE_URL}?${formattedParamStr}`)
     const latestGames = Object.values(response)
 
     return latestGames
