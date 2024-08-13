@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import './styles/styles.css'
 
-const ConfirmModal = ({ method, action, cancelAction, gameTitle }) => {
+const ConfirmModal = ({ method, confirmAction, cancelAction, gameTitle }) => {
     const btnTitle = `${method[0].toUpperCase()}${method.slice(1, method.length)}`
     const ref = useRef(null)
 
@@ -23,7 +23,12 @@ const ConfirmModal = ({ method, action, cancelAction, gameTitle }) => {
                 <h2>Are you sure you want to {method} {gameTitle} game?</h2>
 
                 <div className='modal-buttons'>
-                    <button type="submit" className='delete' onClick={action}>
+                    <button 
+                        type="submit" 
+                        className='delete' 
+                        onClick={confirmAction}
+                        style={{backgroundColor: method !== 'delete' ? 'green' : ''}}
+                    >
                         {btnTitle}
                     </button>
                     <button className='cancel' onClick={closeModal}>

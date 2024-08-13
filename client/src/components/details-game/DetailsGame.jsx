@@ -87,7 +87,7 @@ const DetailsGame = () => {
                 <ConfirmModal 
                     method='delete' 
                     gameTitle={game.title} 
-                    action={deleteGameAction}
+                    confirmAction={deleteGameAction}
                     cancelAction={cancelRemoveState}
                 />
             }
